@@ -9,7 +9,7 @@ namespace perla_metro_stations_service.src.Mappers
 {
     public static class StationMapper
     {
-        public static StationResponseDto ToStationRespose(this Station station)
+        public static StationResponseDto ToStationResponse(this Station station)
         {
             return new StationResponseDto
             {
