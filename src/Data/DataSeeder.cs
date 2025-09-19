@@ -8,7 +8,7 @@ namespace perla_metro_stations_service.src.Data
 {
     public class DataSeeder
     {
-        public static void SeedData(StationsDbContext context)
+        public static async Task SeedData(StationsDbContext context)
         {
             if (!context.Stations.Any())
             {
@@ -16,32 +16,72 @@ namespace perla_metro_stations_service.src.Data
                 {
                     new Station
                     {
-                        Name = "Central Station",
-                        Location = "Downtown",
+                        Name = "Estación Central",
+                        Location = "Av. Principal 100, Centro, Antofagasta",
                         Type = StationType.Origen.ToString(),
                         IsActive = true,
-                        CreatedAt = DateTime.UtcNow,
+                        CreatedAt = DateTime.UtcNow
                     },
                     new Station
                     {
-                        Name = "City Park Station",
-                        Location = "City Park",
+                        Name = "Plaza de Armas",
+                        Location = "Plaza de Armas s/n, Centro, Antofagasta",
                         Type = StationType.Intermedia.ToString(),
                         IsActive = true,
-                        CreatedAt = DateTime.UtcNow,
+                        CreatedAt = DateTime.UtcNow
                     },
                     new Station
                     {
-                        Name = "Airport Station",
-                        Location = "Airport",
+                        Name = "Universidad Católica del Norte",
+                        Location = "Av. Angamos 0610, Antofagasta",
+                        Type = StationType.Intermedia.ToString(),
+                        IsActive = true,
+                        CreatedAt = DateTime.UtcNow
+                    },
+                    new Station
+                    {
+                        Name = "Hospital Regional",
+                        Location = "Av. Argentina 1962, Antofagasta",
+                        Type = StationType.Intermedia.ToString(),
+                        IsActive = true,
+                        CreatedAt = DateTime.UtcNow
+                    },
+                    new Station
+                    {
+                        Name = "Mall Plaza Antofagasta",
+                        Location = "Av. Balmaceda 2355, Antofagasta",
+                        Type = StationType.Intermedia.ToString(),
+                        IsActive = true,
+                        CreatedAt = DateTime.UtcNow
+                    },
+                    new Station
+                    {
+                        Name = "Terminal Norte",
+                        Location = "Av. Grecia 1000, Antofagasta",
                         Type = StationType.Destino.ToString(),
-                        IsActive = false,
-                        CreatedAt = DateTime.UtcNow,
+                        IsActive = true,
+                        CreatedAt = DateTime.UtcNow
+                    },
+                    new Station
+                    {
+                        Name = "Puerto de Antofagasta",
+                        Location = "Terminal Portuario, Antofagasta",
+                        Type = StationType.Intermedia.ToString(),
+                        IsActive = true,
+                        CreatedAt = DateTime.UtcNow
+                    },
+                    new Station
+                    {
+                        Name = "Estadio Regional",
+                        Location = "Av. Stadium s/n, Antofagasta",
+                        Type = StationType.Intermedia.ToString(),
+                        IsActive = false, // Estación en mantenimiento
+                        CreatedAt = DateTime.UtcNow
                     }
                 };
 
-                context.Stations.AddRange(stations);
-                context.SaveChanges();
+                await context.Stations.AddRangeAsync(stations);
+                await context.SaveChangesAsync();
             }
         }
     }
