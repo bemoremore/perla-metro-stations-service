@@ -56,16 +56,34 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<StationsDbContext>();
-    context.Database.Migrate();
-    await DataSeeder.SeedData(context);
+    var maxRetries = 10;
+    var delay = TimeSpan.FromSeconds(5);
+
+    for (var i = 0; i < maxRetries; i++)
+    {
+        try
+        {
+            context.Database.Migrate();
+            await DataSeeder.SeedData(context);
+            break; // Exit the loop if migration is successful
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Attempt {i + 1} of {maxRetries} failed: {ex.Message}");
+            if (i == maxRetries - 1)
+            {
+                throw; // Rethrow the exception if it's the last attempt
+            }
+            await Task.Delay(delay);
+        }
+    }
 }
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+
 
 app.UseRouting();
 app.UseAuthorization();
