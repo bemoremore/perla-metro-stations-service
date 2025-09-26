@@ -8,6 +8,7 @@ services:
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
+      API_KEY: ${API_KEY}
       ASPNETCORE_ENVIRONMENT: Production
     ports:
       - "8080:8080"

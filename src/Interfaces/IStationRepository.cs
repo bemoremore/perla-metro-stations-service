@@ -6,6 +6,9 @@ using perla_metro_stations_service.src.Models;
 
 namespace perla_metro_stations_service.src.Interfaces
 {
+    /// <summary>
+    /// Repository interface for managing stations.
+    /// </summary>
     public interface IStationRepository
     {
         /// <summary>

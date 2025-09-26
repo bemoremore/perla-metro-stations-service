@@ -8,10 +8,19 @@ using perla_metro_stations_service.src.Models;
 
 namespace perla_metro_stations_service.src.Repository
 {
+    /// <summary>
+    /// Implementation of the station repository interface.
+    /// </summary>
     public class StationRepository : IStationRepository
     {
+        /// <summary>
+        /// The database context for station data.
+        /// </summary>
         private readonly Data.StationsDbContext _context;
-
+        /// <summary>
+        /// Initializes a new instance of the StationRepository class.
+        /// </summary>
+        /// <param name="context">The database context.</param>
         public StationRepository(Data.StationsDbContext context)
         {
             _context = context;

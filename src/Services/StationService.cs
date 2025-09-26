@@ -8,9 +8,18 @@ using perla_metro_stations_service.src.Mappers;
 
 namespace perla_metro_stations_service.src.Services
 {
+    /// <summary>
+    /// Implementation of the station service.
+    /// </summary>
     public class StationService : IStationService
     {
+        /// <summary>
+        /// The station repository.
+        /// </summary>
         private readonly IStationRepository _stationRepository;
+        /// <summary>
+        /// Initializes a new instance of the StationService class.
+        /// </summary>
         public StationService(IStationRepository stationRepository)
         {
             _stationRepository = stationRepository;
@@ -33,7 +42,7 @@ namespace perla_metro_stations_service.src.Services
             var stations = await _stationRepository.GetAllStationsAsync();
             return stations.Select(s => s.ToStationResponse());
         }
-        
+
 
         public async Task<StationResponseDto?> GetStationByIdAsync(int id)
         {
@@ -67,7 +76,7 @@ namespace perla_metro_stations_service.src.Services
             existingStation.UpdatedAt = DateTime.UtcNow;
             var updatedStation = await _stationRepository.UpdateStationAsync(id, existingStation);
             return updatedStation?.ToStationResponse();
-            
+
         }
     }
 }

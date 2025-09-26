@@ -8,6 +8,11 @@ namespace perla_metro_stations_service.src.Data
 {
     public class DataSeeder
     {
+        /// <summary>
+        /// Seeds the database with initial data.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public static async Task SeedData(StationsDbContext context)
         {
             if (!context.Stations.Any())
