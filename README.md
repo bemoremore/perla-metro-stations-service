@@ -79,14 +79,14 @@ cd perla-metro-stations-service
 
 # Configuración con docker
 
-3.1. Establecer las credenciales del archivo .env
+3.1. Establecer las credenciales del archivo .env proporcionadas.
 
 ```
 notepad .env
 ```
 o crear el archivo `.env` debe ser creado a la altura de `perla-metro-stations-service/`
 
-3.2. Armar el proyecto utilizando docker compose
+3.2. Armar el proyecto utilizando docker compose para probarlo en **producción**
 
 ```
 docker compose up --build -d
@@ -97,6 +97,29 @@ Un contenedor de docker va a correr la aplicación web en un puerto 8080
 ```
 http://localhost:8080/swagger
 ```
+
+3.4 Armar el proyecto utilizando docker compose para probarlo en **desarrollo con MySQL local** utilizando las variables de entorno .env.example
+
+```
+notepad .env
+```
+
+Con las credenciales de .env.example
+
+3.5 Armar el proyecto con docker compose
+
+```
+docker-compose -f local-compose.yaml up --build
+```
+
+Se aplicaran las migraciones, sedeo y funcionamiento del programa, corriendo en el puerto 5000
+
+3.6. Acá puede visualizar las rutas ingresando la variable de entorno "API_KEY" como autorización
+
+```
+http://localhost:5000/swagger
+```
+
 # Configuración sin docker
 
 4.1. Restaurar las dependencias
