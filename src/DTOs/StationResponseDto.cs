@@ -13,7 +13,7 @@ namespace perla_metro_stations_service.src.DTOs
         /// <summary>
         /// The unique identifier of the station.
         /// </summary>
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         /// <summary>
         /// The name of the station.
         /// </summary>

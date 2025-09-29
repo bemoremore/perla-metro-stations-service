@@ -24,7 +24,7 @@ namespace perla_metro_stations_service.src.Mappers
                 Id = station.Id,
                 Name = station.Name,
                 Location = station.Location,
-                Type = station.Type.ToString(),
+                Type = station.Type,
                 IsActive = station.IsActive,
                 CreatedAt = station.CreatedAt,
                 UpdatedAt = station.UpdatedAt
@@ -41,7 +41,7 @@ namespace perla_metro_stations_service.src.Mappers
             {
                 Name = createStationDto.Name,
                 Location = createStationDto.Location,
-                Type = createStationDto.Type,
+                Type = Helper.GetType.GetTypeDisplayName(createStationDto.Type),
                 IsActive = true,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow

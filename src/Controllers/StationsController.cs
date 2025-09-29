@@ -49,7 +49,7 @@ namespace perla_metro_stations_service.src.Controllers
         /// <response code="500">Internal server error.</response>
         /// </summary>
         [HttpGet("{id}")]
-        public async Task<ActionResult<StationResponseDto>> GetStationById(int id)
+        public async Task<ActionResult<StationResponseDto>> GetStationById(Guid id)
         {
             try
             {
@@ -114,7 +114,7 @@ namespace perla_metro_stations_service.src.Controllers
         /// <response code="500">Internal server error.</response>
         /// </summary>
         [HttpPut("{id}")]
-        public async Task<ActionResult<StationResponseDto>> UpdateStation(int id, [FromBody] UpdateStationDto updateDto)
+        public async Task<ActionResult<StationResponseDto>> UpdateStation(Guid id, [FromBody] UpdateStationDto updateDto)
         {
             try
             {
@@ -154,7 +154,7 @@ namespace perla_metro_stations_service.src.Controllers
         /// <response code="500">Internal server error.</response>
         /// </summary>
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStation(int id)
+        public async Task<IActionResult> DeleteStation(Guid id)
         {
             try
             {

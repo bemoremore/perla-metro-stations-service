@@ -22,7 +22,7 @@ namespace perla_metro_stations_service.src.Interfaces
         /// </summary>
         /// <param name="id">ID of the station.</param>
         /// <returns>The station if found; otherwise, null.</returns>
-        Task<Station?> GetStationByIdAsync(int id);
+        Task<Station?> GetStationByIdAsync(Guid id);
         /// <summary>
         /// Creates a new station.
         /// </summary>
@@ -35,25 +35,25 @@ namespace perla_metro_stations_service.src.Interfaces
         /// <param name="station">The station to update.</param>
         /// <param name="id">The ID of the station to update.</param>
         /// <returns>The updated station if successful; otherwise, null.</returns>
-        Task<Station?> UpdateStationAsync(int id, Station station);
+        Task<Station?> UpdateStationAsync(Guid id, Station station);
         /// <summary>
         /// Deletes a station by its ID.
         /// </summary>
         /// <param name="id">The ID of the station to delete.</param>
         /// <returns>True if the station was deleted; otherwise, false.</returns>
-        Task<bool> DeleteStationAsync(int id);
+        Task<bool> DeleteStationAsync(Guid id);
         /// <summary>
         /// Checks if a station exists by its ID.
         /// </summary>
         /// <param name="id">The ID of the station to check.</param>
         /// <returns>True if the station exists; otherwise, false.</returns>
-        Task<bool> StationExistsAsync(int id);
+        Task<bool> StationExistsAsync(Guid id);
         /// <summary>
         /// Checks if a station exists by its name.
         /// </summary>
         /// <param name="name">The name of the station to check.</param>
         /// <param name="excludeId">An optional ID to exclude from the check.</param>
         /// <returns>True if the station exists; otherwise, false.</returns>
-        Task<bool> StationNameExistsAsync(string name, int? excludeId = null);
+        Task<bool> StationNameExistsAsync(string name, Guid? excludeId = null);
     }
 }

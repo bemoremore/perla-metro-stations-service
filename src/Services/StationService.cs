@@ -32,7 +32,7 @@ namespace perla_metro_stations_service.src.Services
             return createdStation.ToStationResponse();
         }
 
-        public async Task<bool> DeleteStationAsync(int id)
+        public async Task<bool> DeleteStationAsync(Guid id)
         {
             return await _stationRepository.DeleteStationAsync(id);
         }
@@ -44,13 +44,13 @@ namespace perla_metro_stations_service.src.Services
         }
 
 
-        public async Task<StationResponseDto?> GetStationByIdAsync(int id)
+        public async Task<StationResponseDto?> GetStationByIdAsync(Guid id)
         {
             var station = await _stationRepository.GetStationByIdAsync(id);
             return station?.ToStationResponse();
         }
 
-        public async Task<StationResponseDto?> UpdateStationAsync(int id, UpdateStationDto updateDto)
+        public async Task<StationResponseDto?> UpdateStationAsync(Guid id, UpdateStationDto updateDto)
         {
             var existingStation = await _stationRepository.GetStationByIdAsync(id);
             if (existingStation == null)
@@ -67,7 +67,7 @@ namespace perla_metro_stations_service.src.Services
             }
             if (updateDto.Type.HasValue)
             {
-                existingStation.Type = updateDto.Type.Value.ToString();
+                existingStation.Type = Helper.GetType.GetTypeDisplayName(updateDto.Type.Value);
             }
             if (updateDto.IsActive.HasValue)
             {
@@ -78,5 +78,7 @@ namespace perla_metro_stations_service.src.Services
             return updatedStation?.ToStationResponse();
 
         }
+        
     }
+    
 }

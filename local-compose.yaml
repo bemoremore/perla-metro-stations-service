@@ -1,33 +1,41 @@
 services:
-  api:
-    image: bemoremore/perla-metro-stations-service:latest
-    container_name: perla-metro-stations-service-api
-    depends_on:
-      - mysql
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
     environment:
-      DB_HOST: mysql
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-plocalroot123"]
+      timeout: 20s
+      retries: 10
+      interval: 10s
+      start_period: 30s
+
+  api:
+    build: .
+    container_name: perla-metro-stations-service-api-prueba
+    restart: always
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DB_HOST: mysql  
       DB_PORT: 3306
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
-      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
+      API_KEY: ${API_KEY}
     ports:
-      - "8080:8080"
-    volumes:
-      - ./logs:/app/logs
-
-  mysql:
-    image: mysql:8.0
-    container_name: mysql
-    environment:
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_ROOT_PASSWORD: rootpassword
-    ports:
-      - "3307:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
+      - "5000:8080"
 
 volumes:
   mysql_data:

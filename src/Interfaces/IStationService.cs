@@ -21,7 +21,7 @@ namespace perla_metro_stations_service.src.Interfaces
         /// </summary>
         /// <param name="id">The ID of the station.</param>
         /// <returns>The station if found; otherwise, null.</returns>
-        Task<StationResponseDto?> GetStationByIdAsync(int id);
+        Task<StationResponseDto?> GetStationByIdAsync(Guid id);
         /// <summary>
         /// Creates a new station.
         /// </summary>
@@ -34,12 +34,12 @@ namespace perla_metro_stations_service.src.Interfaces
         /// <param name="id">The ID of the station to update.</param>
         /// <param name="updateDto">The updated station data.</param>
         /// <returns>The updated station if successful; otherwise, null.</returns>
-        Task<StationResponseDto?> UpdateStationAsync(int id, UpdateStationDto updateDto);
+        Task<StationResponseDto?> UpdateStationAsync(Guid id, UpdateStationDto updateDto);
         /// <summary>
         /// Deletes a station by its ID.
         /// </summary>
         /// <param name="id">The ID of the station to delete.</param>
         /// <returns>True if the station was deleted; otherwise, false.</returns>
-        Task<bool> DeleteStationAsync(int id);
+        Task<bool> DeleteStationAsync(Guid id);
     }
 }

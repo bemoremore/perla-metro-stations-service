@@ -12,8 +12,8 @@ using perla_metro_stations_service.src.Data;
 namespace perla_metro_stations_service.Migrations
 {
     [DbContext(typeof(StationsDbContext))]
-    [Migration("20250918234027_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250928230507_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,9 @@ namespace perla_metro_stations_service.Migrations
 
             modelBuilder.Entity("perla_metro_stations_service.src.Models.Station", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("char(36)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");

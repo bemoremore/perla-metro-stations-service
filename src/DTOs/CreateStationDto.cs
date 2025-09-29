@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using perla_metro_stations_service.src.Models;
 
 namespace perla_metro_stations_service.src.DTOs
 {
@@ -27,9 +28,7 @@ namespace perla_metro_stations_service.src.DTOs
         /// The type of the station.
         /// </summary>
         [Required(ErrorMessage = "Type is required.")]
-        /// <summary>
-        /// The type of the station.
-        /// </summary>
-        public string Type { get; set; } = string.Empty;
+        [EnumDataType(typeof(StationType), ErrorMessage = "Type must be 1 (Origen), 2 (Destino), or 3 (Intermedia).")]
+        public StationType Type { get; set; } = StationType.Origen;
     }
 }

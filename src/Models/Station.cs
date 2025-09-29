@@ -14,7 +14,7 @@ namespace perla_metro_stations_service.src.Models
         /// The unique identifier for the station.
         /// </summary>
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// The name of the station.

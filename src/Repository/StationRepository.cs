@@ -34,7 +34,7 @@ namespace perla_metro_stations_service.src.Repository
             return station;
         }
 
-        public async Task<bool> DeleteStationAsync(int id)
+        public async Task<bool> DeleteStationAsync(Guid id)
         {
             var station = await GetStationByIdAsync(id);
             if (station == null)
@@ -61,17 +61,17 @@ namespace perla_metro_stations_service.src.Repository
                 .ToListAsync();
         }
 
-        public async Task<Station?> GetStationByIdAsync(int id)
+        public async Task<Station?> GetStationByIdAsync(Guid id)
         {
             return await _context.Stations.FirstOrDefaultAsync(s => s.Id == id);
         }
 
-        public async Task<bool> StationExistsAsync(int id)
+        public async Task<bool> StationExistsAsync(Guid id)
         {
             return await _context.Stations.AnyAsync(s => s.Id == id);
         }
 
-        public async Task<bool> StationNameExistsAsync(string name, int? excludeId = null)
+        public async Task<bool> StationNameExistsAsync(string name, Guid? excludeId = null)
         {
             var query = _context.Stations.Where(s => s.Name.ToLower() == name.ToLower());
             if (excludeId.HasValue)
@@ -81,7 +81,7 @@ namespace perla_metro_stations_service.src.Repository
             return await query.AnyAsync();
         }
 
-        public async Task<Station?> UpdateStationAsync(int id, Station station)
+        public async Task<Station?> UpdateStationAsync(Guid id, Station station)
         {
             var existingStation = await GetStationByIdAsync(id);
             if (existingStation == null)
